@@ -5,36 +5,46 @@
         <v-text-field
             solo
             label="Ingresa un nombre"
+            append-icon="mdi-searcher"
             v-model="nameTeam"
           ></v-text-field>
       </v-col>
     </v-row>
     <v-row>
-      <v-col md="3" sm="12" v-for="team of filteredTeam" v-bind:key="team.id" >
-    <v-card  max-width="400"
-      >
-      <v-card-title dark>
+      <v-col md="4" sm="12" v-for="team of filteredTeam" v-bind:key="team.id" >
+        <v-card
+        max-width="344"
+        class="mx-auto"
+        >
+          <v-list-item>
+            <v-list-item-avatar color="grey">
+              <img
+              :src=team.crestUrl
+              alt="Team"
+              >
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title class="headline">{{team.name}}</v-list-item-title>
+              <v-list-item-subtitle>{{team.area.name}}'s Team - {{team.id}}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
 
-        <h3>{{team.name}}</h3>
-        </v-card-title>
+          <v-card-text>
+            <v-icon>mdi-map-marker</v-icon> Dirección: {{team.address}}
+          </v-card-text>
 
-      <v-card-subtitle>
-        <ul>
-          <li>ID: {{team.id}}</li>
-          <li>AREA: {{team.area.name}}</li>
-          <li>DIRECCIÓN: {{team.address}}</li>
-        </ul>
-      </v-card-subtitle>
-
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <router-link :to = "{name: 'DetailTeam', params: {id: team.id}}">
-        <v-btn class="btn-start" color="warning">
-          Ver más
-        </v-btn>
-        </router-link>
-      </v-card-actions>
-    </v-card>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <router-link :to = "{name: 'DetailTeam', params: {id: team.id}}">
+              <v-btn
+              text
+              color="warning"
+              >
+                Ver más
+              </v-btn>
+            </router-link>
+          </v-card-actions>
+        </v-card>
     </v-col>
     </v-row>
 
